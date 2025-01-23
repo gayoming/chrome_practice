@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Momentum APP</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/clock.js" defer></script>
+    <script src="js/greetings.js" defer></script>
+    <script src="js/quotes.js" defer></script>
+    <script src="js/background.js" defer></script>
 </head>
 
 <body>
@@ -14,7 +17,13 @@
         <input type="text" maxlength="15" placeholder="What is your name?" required />
         <button>Log In</button>
     </form>
+    <h2 id="clock">00:00</h2>
     <h1 id="greeting" class="hidden"></h1>
+    <div id="quote">
+        <span class="quote"></span>
+        <span class="korean"></span>
+        <span class="author"></span>
+    </div>
 </body>
 
 </html>
