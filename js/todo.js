@@ -1,54 +1,59 @@
 const toDoForm = document.getElementById("todo-form");
-const toDoInput = document.querySelector("#todo-form input")
+const toDoInput = document.querySelector("#todo-form input");
 const toDoList = document.getElementById("todo-list");
 
-const TODOS_KEY = "todos"
+const TODOS_KEY = "todos";
 
-const toDos = [];
+let toDos = [];
 
-function saveTodos () {
-    localStorage.setItem(TODOS_KEY,JSON.stringify(toDos)); // JSON.stringify 어떤 자바스크립트 코드인더 간에 전부 stirng으로 바꿔줌
-} // 작성한 투두 로컬에 저장
-
-function deleteTodo (event) {
- const li = event.target.parentElement;
- li.remove();
-} // 투두리스트 삭제 버튼
-
-function paintToDo(newTodo) {
- const li = document.createElement("li");
- const span = document.createElement("span");
- span.innerText = newTodo;
- const button = document.createElement("button");
- button.innerText = "🗑"
- button.addEventListener("click",deleteTodo)
-
-
- li.appendChild(span);
- li.appendChild(button);
- toDoList.appendChild(li)
-} // 투두 리스트에 리스트 추가, (li > span, button(delete)), 버튼 클릭시 리스트 삭제 버튼 인식
-
-function handleToDoSubmit(event) {
-    event.preventDefault();
-    const newTodo = toDoInput.value;
-    toDoInput.value = "";
-    toDos.push(newTodo);
-    paintToDo(newTodo);
-    localStorage.setItem(TODOS_KEY,toDos);
-} //form submit 시에 일어나는 함수들 (새로고침 방지, 인풋창에 쓴 value 받아오기, )
-
-toDoForm.addEventListener("submit", handleToDoSubmit);
-
-function sayHello(item) {
-    console.log("hello",item);
+// 🛠️ 로컬스토리지에 저장하는 함수
+function saveTodos() {
+    localStorage.setItem(TODOS_KEY, JSON.stringify(toDos));
 }
 
-// localStorage는 배열 저장이 x only Text
+// 🛠️ 할 일 삭제 함수 (텍스트 기준으로 삭제)
+function deleteTodo(event) {
+    const li = event.target.parentElement;
+    const text = li.querySelector("span").innerText; // li 내부의 span 텍스트 가져오기
+    li.remove();
 
-const saveTodos = localStorage.getItem(TODOS_KEY);
+    // toDos 배열에서 삭제된 항목 제외
+    toDos = toDos.filter((todo) => todo !== text);
+    saveTodos();
+}
 
-if (saveTodos !== null) {
-    const parsedToDos = JSON.parse(saveTodos);
-    parsedToDos.forEach();
+// 🛠️ 새로운 할 일을 화면에 표시하는 함수
+function paintToDo(newTodo) {
+    const li = document.createElement("li");
+    const span = document.createElement("span");
+    span.innerText = newTodo;
+    const button = document.createElement("button");
+    button.innerText = "🗑";
+    button.addEventListener("click", deleteTodo);
+
+    li.appendChild(span);
+    li.appendChild(button);
+    toDoList.appendChild(li);
+}
+
+// 🛠️ 폼 제출 이벤트 처리
+function handleToDoSubmit(event) {
+    event.preventDefault(); // 새로고침 방지
+    const newTodoText = toDoInput.value.trim(); // 입력값 앞뒤 공백 제거
+
+    toDoInput.value = ""; // 입력 필드 초기화
+    toDos.push(newTodoText); // 배열에 추가
+    paintToDo(newTodoText); // 화면에 표시
+    saveTodos(); // 로컬스토리지에 저장
+}
+
+// 폼 제출 이벤트 리스너 추가
+toDoForm.addEventListener("submit", handleToDoSubmit);
+
+// 🛠️ 페이지 로드 시 localStorage에서 투두 리스트 불러오기
+const savedToDos = localStorage.getItem(TODOS_KEY);
+
+if (savedToDos !== null) {
+    toDos = JSON.parse(savedToDos);
+    toDos.forEach(paintToDo);
 }
