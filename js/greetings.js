@@ -3,7 +3,8 @@
  
 const loginForm = document.querySelector("#login-form");
 const loginInput = document.querySelector("#login-form input");
-const greeting = document.querySelector("#greeting");
+const greeting = document.querySelector(".greeting");
+const todoForm = document.querySelector("#todo-form");
 
 const HIDDEN_CLASSNAME = "hidden";
 const USERNAME_KEY = "username"; //자주 쓰는 string은 변수로 지정하자, string 오류는 js가 잡지 않지만 변수는 잡는다.
@@ -22,6 +23,7 @@ function onLoginSubmit(e) {
 function paintGreetings (username) {
     greeting.innerText = `안녕하세요 ${username}님`;
     greeting.classList.remove(HIDDEN_CLASSNAME);
+    todoForm.classList.remove(HIDDEN_CLASSNAME);
 }
 
 const savedUsername = localStorage.getItem(USERNAME_KEY);

@@ -1,3 +1,31 @@
+* {margin: 0; padding: 0; box-sizing: border-box;}
+
+body {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 800px;
+}
+
 .hidden {
     display: none;
 }
+
+#weather {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.wi {
+    font-size: 48px;
+}
+
+button, input {all:unset;}
+
+.wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
