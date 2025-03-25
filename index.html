@@ -18,25 +18,31 @@
 
 <body>
     <div class="wrap">
-        <h2 id="clock">00:00</h2>
 
-        <form id="login-form" class="hidden">
-            <input type="text" maxlength="15" placeholder="What is your name?" required />
-            <button>Log In</button>
-        </form>
+        <header>
+            <h2 id="clock">00:00</h2>
+            <div id="weather">
+                <span></span> <!-- 날씨 아이콘 + 상태 -->
+                <span></span> <!-- 도시 이름 -->
+            </div>
+        </header>
+
+            <form id="login-form" class="hidden greeting">
+                <input type="text" maxlength="15" placeholder="What is your name?" required />
+                <button>LOG IN</button>
+            </form>
 
         <h1 id="greeting" class="hidden greeting"></h1>
+        
+        <div class="todo-wrap">
+            <form action="" id="todo-form" class="hidden greeting">
+                <input type="text" placeholder="TODO LIST를 적어주세요." required>
+            </form>
 
-        <form action="" id="todo-form" class="greeting hidden">
-            <input type="text" placeholder="TODO LIST를 적어주세요." required>
-        </form>
-
-        <ul id="todo-list"></ul>
-
-        <div id="weather">
-            <span></span> <!-- 날씨 아이콘 + 상태 -->
-            <span></span> <!-- 도시 이름 -->
+            <ul id="todo-list"></ul>
         </div>
+
+        
         <div id="quote">
             <span class="quote"></span>
             <span class="korean"></span>

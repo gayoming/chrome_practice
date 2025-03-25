@@ -21,7 +21,7 @@ function onLoginSubmit(e) {
 // onLoginSubmit(); 괄호를 넣는 순간 바로 함수 실행됨 , But addEventListener은 이벤트가 실행 될 때 이므로 괄호 X 이벤트 실행되면 알아서 함수가 실행됨
 
 function paintGreetings (username) {
-    greeting.innerText = `안녕하세요 ${username}님`;
+    greeting.innerText = `안녕하세요, ${username}님!`;
     greeting.classList.remove(HIDDEN_CLASSNAME);
     todoForm.classList.remove(HIDDEN_CLASSNAME);
 }
